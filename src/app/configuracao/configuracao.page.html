@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Configurações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="cor1">
+<div>
+  <p style="text-align: center;">Configure seu alarme</p>
+ <div>
+ <ion-item >
+    <ion-label position="floating">Data</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" min="1994-03-14" max="2030-12-31" [(ngModel)]="mydate" (ionChange)="doSomething(this.mydate)"></ion-datetime>
+  </ion-item>
+</div>
+<div>
+  <ion-item >
+    <ion-label>Horário</ion-label>
+    <ion-datetime displayFormat="HH:mm"  [(ngModel)]="myhour" (ionChange)="doSomething2(this.myhour)"></ion-datetime>
+  </ion-item>
+</div>
+<div style="text-align: center;">
+<ion-button color="primary" (click)="presentAlert()">Definir</ion-button>
+</div>
+</div>
+</ion-content>
