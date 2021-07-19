@@ -13,6 +13,7 @@ export class ConfiguracaoPage implements OnInit {
   customDayShortNames = ['s\u00f8n', 'man', 'tir', 'ons', 'tor', 'fre', 'l\u00f8r'];
   customPickerOptions: any;
   mydate :any;
+ 
   constructor(public alertController: AlertController,private storage: Storage) { 
   this.customPickerOptions = {
     buttons: [{
@@ -22,7 +23,7 @@ export class ConfiguracaoPage implements OnInit {
     {
       text: 'Log',
       handler: () => {
-        console.log('Clicked Log. Do not Dismiss.');
+        console.log('');
         return false;
       }
     }]
@@ -48,19 +49,24 @@ doSomething(date) {
 }
 doSomething2(hour) {
   this.storage.set('hour', moment(hour).format('HH:mm')); 
+ 
 }
 
 
   ngOnInit() {
+    moment().format('lll'); 
     moment.locale('pt-br');
+    moment().format('lll');
     this.storage.set('date', 'No Date');
     this.storage.set('hour','No hour');
     setInterval(() => {
       this.storage.get('date').then((val) => {
         this.storage.get('hour').then((val2) => {
+          if(  moment().isSameOrAfter(val2)){
+this.presentAlert();
+          }
           console.log('data:  ' ,val);
           console.log('hora: ', val2);
-          
         });
       });
     
